@@ -976,8 +976,8 @@ final class DefaultDnsClient implements DnsClient {
         return t instanceof SrvAddressRemovedException || t instanceof IllegalStateException ||
                 t instanceof ClosedDnsServiceDiscovererException || (nxInvalidation &&
                 // string matching is done on purpose to avoid the hard Netty dependency
-                (t.getCause() != null && t.getCause().getClass().getName()
-                        .equals("io.netty.resolver.dns.DnsErrorCauseException")) &&
+                (t.getCause() != null && "io.netty.resolver.dns.DnsErrorCauseException"
+                        .equals(t.getCause().getClass().getName())) &&
                 NXDOMAIN.equals(((io.netty.resolver.dns.DnsErrorCauseException) t.getCause()).getCode()));
     }
 
