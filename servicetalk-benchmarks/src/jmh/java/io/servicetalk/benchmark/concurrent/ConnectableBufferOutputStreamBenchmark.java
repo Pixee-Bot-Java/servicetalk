@@ -20,6 +20,7 @@ import io.servicetalk.concurrent.PublisherSource.Subscriber;
 import io.servicetalk.concurrent.PublisherSource.Subscription;
 import io.servicetalk.concurrent.api.Publisher;
 import io.servicetalk.concurrent.api.internal.ConnectableBufferOutputStream;
+import java.security.SecureRandom;
 
 import org.openjdk.jmh.annotations.AuxCounters;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -105,7 +106,7 @@ public class ConnectableBufferOutputStreamBenchmark {
     @Param({"true", "false"})
     public boolean flushOnEach;
 
-    final Random r = new Random();
+    final Random r = new SecureRandom();
     byte[] data;
     ConnectableBufferOutputStream cbos;
     Publisher<Buffer> publisher;
