@@ -21,6 +21,7 @@ import io.servicetalk.buffer.netty.BufferAllocators;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.security.SecureRandom;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Fork;
@@ -175,7 +176,7 @@ public class JacksonStreamingSerializerBenchmark {
         final Map<String, Object> payload = new HashMap<>();
 
         int remainingBytes = size;
-        Random random = new Random();
+        Random random = new SecureRandom();
         while (remainingBytes > 2) {
             int keyLen = Math.max(1, random.nextInt(Math.min(50, remainingBytes)));
             remainingBytes -= keyLen;
